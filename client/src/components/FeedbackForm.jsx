@@ -6,14 +6,14 @@ export default function FeedbackForm() {
   const [responses, setResponses] = useState(null);
   const [history, setHistory] = useState([]);
 
-  // const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;
+  const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
 
     try {
-      const res = await axios.post("http://127.0.0.1:5000/api/feedback", {
+      const res = await axios.post(`${API_BASE_URL}/api/feedback`, {
         user_input: input,
       });
 
@@ -39,14 +39,14 @@ export default function FeedbackForm() {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:5000/api/history");
+        const res = await axios.get(`${API_BASE_URL}/api/history`);
         setHistory(res.data);
       } catch (error) {
         console.error("Failed to load history:", error);
       }
     };
     fetchHistory();
-  }, []);
+  }, [API_BASE_URL]);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
