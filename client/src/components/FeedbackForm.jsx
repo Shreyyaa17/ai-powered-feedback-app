@@ -7,7 +7,8 @@ export default function FeedbackForm() {
   const [history, setHistory] = useState([]);
 
   const API_BASE_URL =
-    process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+    process.env.REACT_APP_BACKEND_URL ||
+    "https://ai-feedback-backend-l4rf.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
